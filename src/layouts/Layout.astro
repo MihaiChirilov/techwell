@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { 
+	title, 
+	description = "Program specializat de wellness conceput specific pentru companiile IT de către un profesionist din domeniul IT. Sesiuni zilnice la sediul companiei, integrate în programul normal de lucru." 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ro">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<slot />
+		<script>
+			// Funcție pentru smooth scroll
+			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+				anchor.addEventListener('click', function (e) {
+					e.preventDefault();
+					const targetId = this.getAttribute('href');
+					if (targetId === '#') return;
+					
+					const targetElement = document.querySelector(targetId);
+					if (targetElement) {
+						targetElement.scrollIntoView({
+							behavior: 'smooth'
+						});
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
